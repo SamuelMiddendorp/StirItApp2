@@ -29,10 +29,17 @@ namespace StirItApp
             {
                 var dB = new SQLiteConnection(dBPath);
                 var table = dB.Table<Users>();
+                ShowBTN.Text = "";
                 foreach (var Users in table)
                 {
-                    ShowBTN.Text = Users.name;
+                    ShowBTN.Text += Users.name;
                 }
+            };
+            Button DelBTN = FindViewById<Button>(Resource.Id.DeleteBTN);
+            DelBTN.Click += delegate
+            {
+                var dB = new SQLiteConnection(dBPath);
+                dB.DeleteAll<Users>();
             };
             }
     }
